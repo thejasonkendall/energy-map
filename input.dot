@@ -39,7 +39,6 @@ digraph EnergyMap {
     Me -> Hobbies [color="#6366F1", penwidth=2];
     Me -> Finance [color="#6366F1", penwidth=2];
     Me -> ContentCreation [color="#6366F1", penwidth=2];
-    Me -> HamRadio [color="#6366F1", penwidth=2];
     Hobbies -> HamRadio [color="#6366F1", penwidth=1];
 
     // Work connections
