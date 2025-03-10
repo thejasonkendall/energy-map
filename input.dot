@@ -56,5 +56,5 @@ digraph EnergyMap {
     {rank=same; Home; ContentCreation}
     {rank=same; Finance; Hobbies; PrimaryJob}
     {rank=min; Health; Learning}
-    {rank=max; Friends; Helping; BigProject; HamRadio}
+    {rank=max; Friends; Helping; BigProject}
 }
