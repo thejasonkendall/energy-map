@@ -22,7 +22,7 @@ digraph EnergyMap {
     Health [fillcolor="#6366F1", label="Health"];
     Learning [fillcolor="#6366F1", label="Learning"];
     Hobbies [fillcolor="#6366F1", label="Hobbies"];
-    Finance [fillcolor="#6366F1", label="Personal Finance"];
+    Finance [fillcolor="#6366F1", label="Finance"];
     ContentCreation [fillcolor="#6366F1", label="Content Creation"];
     HamRadio [fillcolor="#6366F1", label="Ham Radio"];
     
