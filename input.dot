@@ -1,27 +1,3 @@
-# Energy Map with Graphviz
-
-This repository contains a Graphviz DOT file for generating an "Energy Map" - a visual tool for prioritizing where to direct your energy and attention, as an alternative to traditional to-do lists.
-
-## What is an Energy Map?
-
-An Energy Map helps you visualize where your time, attention, and energy should be focused each day. Instead of tracking specific tasks, it keeps you aware of the important people and areas of life that deserve your energy.
-
-## Quick Start
-
-1. Install Graphviz on Debian/Ubuntu:
-   ```bash
-   sudo apt-get update
-   sudo apt-get install graphviz
-   ```
-
-2. Generate the Energy Map image:
-   ```bash
-   dot -Tpng energy_map.dot -o energy_map.png
-   ```
-
-## The DOT File
-
-```dot
 digraph EnergyMap {
     // Graph settings
     graph [rankdir=TB, splines=true, overlap=false, nodesep=0.8, ranksep=1.0, fontname="Arial", label="Energy Map", labelloc=t, fontsize=20, bgcolor="transparent"];
@@ -74,7 +50,7 @@ digraph EnergyMap {
     // Family connection
     Family -> Home [color="#EC4899", penwidth=2];
 
-    // Positioning hints to approximate layout
+    // Positioning hints to approximate your layout
     {rank=same; Family; Me; Work}
     {rank=same; Helping; Friends}
     {rank=same; Health; Learning}
@@ -83,62 +59,3 @@ digraph EnergyMap {
     {rank=min; Health; Learning}
     {rank=max; Friends; Helping; BigProject; HamRadio}
 }
-```
-
-## Output Options
-
-Generate different file formats:
-
-```bash
-# PNG image
-dot -Tpng energy_map.dot -o energy_map.png
-
-# SVG for web
-dot -Tsvg energy_map.dot -o energy_map.svg
-
-# PDF for printing
-dot -Tpdf energy_map.dot -o energy_map.pdf
-```
-
-Adjust image size:
-```bash
-dot -Tpng -Gsize=8,6\! -Gdpi=300 energy_map.dot -o energy_map_large.png
-```
-
-## Customizing Your Energy Map
-
-To modify the Energy Map:
-
-1. Add/remove nodes by adding/removing their definitions and connections
-2. Change colors by modifying the `fillcolor` attributes
-3. Adjust node sizes with the `width` parameter
-4. Reposition elements by modifying the `rank` statements
-
-## Color Reference
-
-| Area | Hex Color |
-|------|-----------|
-| Me   | #6366F1   |
-| Family | #EC4899 |
-| Work | #F59E0B |
-| Friends | #10B981 |
-| Helping | #805AD5 |
-
-## Why Use an Energy Map?
-
-- Focuses on high-level priorities rather than specific tasks
-- Provides visual reminders of what deserves your attention
-- Helps maintain balance across different life areas
-- Prevents energy from being consumed by less important activities
-
-## Further Customization
-
-For more advanced styling, consider:
-
-```bash
-# Using neato for a more organic layout
-neato -Tpng energy_map.dot -o energy_map_organic.png
-
-# Using fdp for a force-directed layout
-fdp -Tpng energy_map.dot -o energy_map_force.png
-```
