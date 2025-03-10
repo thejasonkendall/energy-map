@@ -15,6 +15,7 @@ digraph EnergyMap {
 
     // Personal nodes
     Health [fillcolor="#6366F1", fontcolor=white, fontsize=12, width=1.0, label="Health"];
+    Learning [fillcolor="#6366F1", fontcolor=white, fontsize=12, width=1.0, label="Learning"];
     Hobbies [fillcolor="#6366F1", fontcolor=white, fontsize=12, width=1.0, label="Hobbies"];
     Finance [fillcolor="#6366F1", fontcolor=white, fontsize=12, width=1.0, label="Personal\nFinance"];
     ContentCreation [fillcolor="#6366F1", fontcolor=white, fontsize=12, width=1.0, label="Content\nCreation"];
@@ -22,8 +23,8 @@ digraph EnergyMap {
 
     // Work-related nodes
     PrimaryJob [fillcolor="#F59E0B", fontcolor=white, fontsize=12, width=1.1, label="Primary Job"];
-    BigProject [fillcolor="#F59E0B", fontcolor=white, fontsize=12, width=1.0, label="Big Project 1"];
-    Learning [fillcolor="#F59E0B", fontcolor=white, fontsize=12, width=1.0, label="Learning"];
+    BigProject [fillcolor="#F59E0B", fontcolor=white, fontsize=12, width=1.0, label="Side Work"];
+    WorkLearning [fillcolor="#F59E0B", fontcolor=white, fontsize=12, width=1.0, label="Learning"];
 
     // Family node
     Home [fillcolor="#EC4899", fontcolor=white, fontsize=11, width=0.9, label="Home"];
@@ -36,6 +37,7 @@ digraph EnergyMap {
 
     // Personal connections
     Me -> Health [color="#6366F1", penwidth=2];
+    Me -> Learning [color="#6366F1", penwidth=2];
     Me -> Hobbies [color="#6366F1", penwidth=2];
     Me -> Finance [color="#6366F1", penwidth=2];
     Me -> ContentCreation [color="#6366F1", penwidth=2];
@@ -44,17 +46,34 @@ digraph EnergyMap {
     // Work connections
     Work -> PrimaryJob [color="#F59E0B", penwidth=2];
     Work -> BigProject [color="#F59E0B", penwidth=2];
-    Work -> Learning [color="#F59E0B", penwidth=2];
+    Work -> WorkLearning [color="#F59E0B", penwidth=2];
 
     // Family connection
     Family -> Home [color="#EC4899", penwidth=2];
 
-    // Positioning hints to approximate your layout
-    {rank=same; Family; Me; Work}
-    {rank=same; Helping; Friends}
+    // Position Family and Home to the left of Me
+    {rank=same; Family; Me; Work;}
+    Family -> Me [style=invis];
+    Me -> Work [style=invis];
+    
+    // Position additional elements
+    {rank=same; Friends; Helping}
     {rank=same; Health; Learning}
-    {rank=same; Home; ContentCreation}
     {rank=same; Finance; Hobbies; PrimaryJob}
-    {rank=min; Health; Learning}
-    {rank=max; Friends; Helping; BigProject; HamRadio}
+    {rank=same; Home; ContentCreation}
+    
+    // Edge constraints to help with layout
+    Me -> Friends [weight=0.5];
+    Me -> Helping [weight=0.5];
+    
+    // Force Family to be left of Me
+    edge [constraint=false];
+    Family -> Me:w [style=invis, weight=100];
+    
+    // Additional layout tweaks
+    subgraph cluster_left {
+        rank=min;
+        Family;
+        color=invis;
+    }
 }
