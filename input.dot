@@ -1,6 +1,6 @@
 digraph EnergyMap {
     // Basic settings
-    graph [fontname="Arial", fontsize=22, label="Energy Map", splines=true, nodesep=0.4, ranksep=0.6];
+    graph [fontname="Arial", fontsize=22, fontcolor="black", label="Energy Map", labelloc=tl, labeljust=l, splines=true, nodesep=0.4, ranksep=0.6];
     node [fontname="Arial", style="filled", shape="box", fontcolor="white", fontsize=16, margin="0.3,0.2", height=0.8, width=1.8, penwidth=2];
     edge [penwidth=3, arrowhead=none];
     
