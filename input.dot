@@ -1,79 +1,92 @@
 digraph EnergyMap {
-    // Graph settings
-    graph [rankdir=TB, splines=true, overlap=false, nodesep=0.8, ranksep=1.0, fontname="Arial", label="Energy Map", labelloc=t, fontsize=20, bgcolor="transparent"];
-    node [shape=circle, style=filled, fontname="Arial", fixedsize=true, width=1.2];
-    edge [penwidth=2, arrowhead=none];
-
+    // Basic settings
+    graph [fontname="Arial", fontsize=22, label="Energy Map", splines=true, nodesep=0.4, ranksep=0.6];
+    node [fontname="Arial", style="filled", shape="box", fontcolor="white", fontsize=16, margin="0.3,0.2", height=0.8, width=1.8, penwidth=2];
+    edge [penwidth=3, arrowhead=none];
+    
     // Main node
-    Me [fillcolor="#6366F1", fontcolor=white, fontsize=15, width=1.5, label="Me"];
-
-    // Category nodes
-    Family [fillcolor="#EC4899", fontcolor=white, fontsize=14, label="Family"];
-    Work [fillcolor="#F59E0B", fontcolor=white, fontsize=14, label="Work"];
-    Friends [fillcolor="#10B981", fontcolor=white, fontsize=14, label="Friends"];
-    Helping [fillcolor="#805AD5", fontcolor=white, fontsize=14, label="Helping"];
-
-    // Personal nodes
-    Health [fillcolor="#6366F1", fontcolor=white, fontsize=12, width=1.0, label="Health"];
-    Learning [fillcolor="#6366F1", fontcolor=white, fontsize=12, width=1.0, label="Learning"];
-    Hobbies [fillcolor="#6366F1", fontcolor=white, fontsize=12, width=1.0, label="Hobbies"];
-    Finance [fillcolor="#6366F1", fontcolor=white, fontsize=12, width=1.0, label="Personal\nFinance"];
-    ContentCreation [fillcolor="#6366F1", fontcolor=white, fontsize=12, width=1.0, label="Content\nCreation"];
-    HamRadio [fillcolor="#6366F1", fontcolor=white, fontsize=10, width=0.8, label="Ham Radio"];
-
-    // Work-related nodes
-    PrimaryJob [fillcolor="#F59E0B", fontcolor=white, fontsize=12, width=1.1, label="Primary Job"];
-    BigProject [fillcolor="#F59E0B", fontcolor=white, fontsize=12, width=1.0, label="Side Work"];
-    WorkLearning [fillcolor="#F59E0B", fontcolor=white, fontsize=12, width=1.0, label="Learning"];
-
-    // Family node
-    Home [fillcolor="#EC4899", fontcolor=white, fontsize=11, width=0.9, label="Home"];
-
-    // Main connections from Me
-    Me -> Family [color="#EC4899", penwidth=3];
-    Me -> Work [color="#F59E0B", penwidth=3];
-    Me -> Friends [color="#10B981", penwidth=3];
-    Me -> Helping [color="#805AD5", penwidth=4];
-
-    // Personal connections
-    Me -> Health [color="#6366F1", penwidth=2];
-    Me -> Learning [color="#6366F1", penwidth=2];
-    Me -> Hobbies [color="#6366F1", penwidth=2];
-    Me -> Finance [color="#6366F1", penwidth=2];
-    Me -> ContentCreation [color="#6366F1", penwidth=2];
-    Hobbies -> HamRadio [color="#6366F1", penwidth=1];
-
+    Me [fillcolor="#6366F1", shape="circle", width=2.2, height=2.2, label="Me", fontsize=24];
+    
+    // Family section
+    Family [fillcolor="#EC4899", fontsize=18, label="Family"];
+    Home [fillcolor="#EC4899", label="Home"];
+    
+    // Work section
+    Work [fillcolor="#F59E0B", fontsize=18, label="Work"];
+    PrimaryJob [fillcolor="#F59E0B", label="Primary Job"];
+    SideWork [fillcolor="#F59E0B", label="Side Work"];
+    WorkLearning [fillcolor="#F59E0B", label="Learning"];
+    
+    // Personal section
+    Personal [fillcolor="#6366F1", fontsize=18, label="Personal"];
+    Health [fillcolor="#6366F1", label="Health"];
+    Learning [fillcolor="#6366F1", label="Learning"];
+    Hobbies [fillcolor="#6366F1", label="Hobbies"];
+    Finance [fillcolor="#6366F1", label="Personal Finance"];
+    ContentCreation [fillcolor="#6366F1", label="Content Creation"];
+    HamRadio [fillcolor="#6366F1", label="Ham Radio"];
+    
+    // Community section
+    Community [fillcolor="#805AD5", fontsize=18, label="Community"];
+    Friends [fillcolor="#10B981", label="Friends"];
+    Helping [fillcolor="#805AD5", label="Helping Others"];
+    
+    // Create the structured layout with 3 rows
+    {rank=same; Me}
+    {rank=same; Family; Work}
+    {rank=same; Personal; Community}
+    {rank=same; Home; PrimaryJob}
+    {rank=same; Health; Friends}
+    {rank=same; SideWork; Learning}
+    {rank=same; WorkLearning; Hobbies}
+    {rank=same; Finance; Helping}
+    {rank=same; ContentCreation; HamRadio}
+    
+    // Connect Me directly to main categories
+    Me -> Family [color="#EC4899", penwidth=5];
+    Me -> Work [color="#F59E0B", penwidth=5];
+    Me -> Personal [color="#6366F1", penwidth=5];
+    Me -> Community [color="#805AD5", penwidth=5];
+    
+    // Family connections
+    Family -> Home [color="#EC4899", penwidth=4];
+    
     // Work connections
-    Work -> PrimaryJob [color="#F59E0B", penwidth=2];
-    Work -> BigProject [color="#F59E0B", penwidth=2];
-    Work -> WorkLearning [color="#F59E0B", penwidth=2];
-
-    // Family connection
-    Family -> Home [color="#EC4899", penwidth=2];
-
-    // Position Family and Home to the left of Me
-    {rank=same; Family; Me; Work;}
-    Family -> Me [style=invis];
-    Me -> Work [style=invis];
+    Work -> PrimaryJob [color="#F59E0B", penwidth=4];
+    Work -> SideWork [color="#F59E0B", penwidth=3.5];
+    Work -> WorkLearning [color="#F59E0B", penwidth=3];
     
-    // Position additional elements
-    {rank=same; Friends; Helping}
-    {rank=same; Health; Learning}
-    {rank=same; Finance; Hobbies; PrimaryJob}
-    {rank=same; Home; ContentCreation}
+    // Personal connections
+    Personal -> Health [color="#6366F1", penwidth=5];
+    Personal -> Learning [color="#6366F1", penwidth=4];
+    Personal -> Hobbies [color="#6366F1", penwidth=4];
+    Personal -> Finance [color="#6366F1", penwidth=3.5];
+    Personal -> ContentCreation [color="#6366F1", penwidth=3.5];
+    Hobbies -> HamRadio [color="#6366F1", penwidth=2.5];
     
-    // Edge constraints to help with layout
-    Me -> Friends [weight=0.5];
-    Me -> Helping [weight=0.5];
+    // Community connections
+    Community -> Friends [color="#10B981", penwidth=4];
+    Community -> Helping [color="#805AD5", penwidth=4.5];
     
-    // Force Family to be left of Me
-    edge [constraint=false];
-    Family -> Me:w [style=invis, weight=100];
+    // Force layout for main categories
+    Family -> Work [style=invis];
+    Personal -> Community [style=invis];
     
-    // Additional layout tweaks
+    // Use subgraphs to force organization into columns
     subgraph cluster_left {
-        rank=min;
-        Family;
-        color=invis;
+        label="";
+        color=white;
+        Family; Home;
+        Personal; Health; Learning; Hobbies; Finance; ContentCreation; HamRadio;
     }
+    
+    subgraph cluster_right {
+        label="";
+        color=white;
+        Work; PrimaryJob; SideWork; WorkLearning;
+        Community; Friends; Helping;
+    }
+    
+    // Enforce top-down flow in the graph
+    edge [constraint=true];
 }
